@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { WorldMap } from "react-svg-worldmap"
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+
+const data =
+  [
+    { country: "cn", value: 1389618778 }, // china
+    { country: "in", value: 1311559204 }, // india
+  ]
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <TransformWrapper>
+        <TransformComponent>
+          <WorldMap color="blue" title="This is My Map" size="xxl" data={data} />
+        </TransformComponent>
+      </TransformWrapper>
     </div>
   );
 }
