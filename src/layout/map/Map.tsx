@@ -1,5 +1,6 @@
 import { WorldMap } from "react-svg-worldmap"
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import './Map.scss'
 
 const countryData =
     [
