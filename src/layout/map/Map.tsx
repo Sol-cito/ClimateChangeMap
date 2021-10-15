@@ -11,11 +11,7 @@ const countryData =
 const Map = () => {
     return (
         <div className='MapWrapper'>
-            <TransformWrapper>
-                <TransformComponent>
-                    <WorldMap color="blue" title="This is My Map" size="xxl" data={countryData} />
-                </TransformComponent>
-            </TransformWrapper>
+            <WorldMap color="blue" size="xxl" data={countryData} />
         </div>
     )
 }
