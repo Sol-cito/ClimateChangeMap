@@ -1,5 +1,11 @@
+export interface CountryCodeResponse {
+  id: number;
+  alpha2Code: string;
+  alpha3Code: string;
+  numericCode: number;
+}
+
 export interface CountryData {
-  countryName: string;
-  countryCode: string;
-  countryValue: string;
+  country: string;
+  value: number;
 }
