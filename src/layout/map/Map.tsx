@@ -1,30 +1,26 @@
-import axios from "axios";
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { WorldMap } from "react-svg-worldmap";
+import CountryDataService from "../../service/CountryDataService";
 import "./Map.scss";
 import { CountryCodeResponse, CountryData } from "./model/CountryData.model";
 
 const countryData: CountryData[] = [];
+const countryDataService = new CountryDataService();
 
 const Map = () => {
   useEffect(() => {
-    getAllCountryCode();
+    countryDataService.getAllCountryCode().then((res) => {
+      res.data.forEach((item: CountryCodeResponse) => {
+        countryData.push({
+          country: item.alpha2Code,
+          value: item.numericCode,
+        });
+      });
+      setCodeLoading(true);
+    });
   }, []);
 
   const [isLoadingCodeOver, setCodeLoading] = useState<boolean>(false);
-
-  const getAllCountryCode = async () => {
-    try {
-      const res = await axios.get("http://localhost:3100/countryCode/allCode");
-      res.data.forEach((item: CountryCodeResponse) => {
-        countryData.push({ country: item.alpha2Code, value: item.numericCode });
-      });
-    } catch (error) {
-      alert(error);
-    }
-    setCodeLoading(true);
-  };
-
   const handleOnclick = (
     countryName: string,
     countryCode: string,
@@ -39,7 +35,8 @@ const Map = () => {
     <div className="MapWrapper">
       {isLoadingCodeOver && (
         <WorldMap
-          color="red"
+          color="green"
+          backgroundColor="#CCFFFF"
           size="xxl"
           data={countryData}
           onClickFunction={(
