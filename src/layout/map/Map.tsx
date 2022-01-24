@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { WorldMap } from "react-svg-worldmap";
 import CountryDataService from "../../service/CountryDataService";
+import CountryModal from "./CountryModal";
 import "./Map.scss";
 import { CountryCodeResponse, CountryData } from "./model/CountryData.model";
 
@@ -8,6 +9,9 @@ const countryData: CountryData[] = [];
 const countryDataService = new CountryDataService();
 
 const Map = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [selectedCountryCode, setSelectedCountryCode] = useState("");
+
   useEffect(() => {
     countryDataService.getAllCountryCode().then((res) => {
       res.data.forEach((item: CountryCodeResponse) => {
@@ -26,28 +30,31 @@ const Map = () => {
     countryCode: string,
     countryValue: string
   ) => {
-    console.log("선택 국가 : " + countryCode);
-    // TODO : 선택 국가 모달 띄우기
+    setShowModal(true);
+    setSelectedCountryCode(countryCode);
     return {};
   };
 
   return (
-    <div className="MapWrapper">
-      {isLoadingCodeOver && (
-        <WorldMap
-          color="green"
-          backgroundColor="#CCFFFF"
-          size="xxl"
-          data={countryData}
-          onClickFunction={(
-            event: React.MouseEvent<SVGElement, Event>,
-            countryName: string,
-            isoCode: string,
-            value: string
-          ) => handleOnclick(countryName, isoCode, value)}
-        />
-      )}
-    </div>
+    <>
+      <CountryModal show={showModal} countryCode={selectedCountryCode} />
+      <div className="MapWrapper">
+        {isLoadingCodeOver && (
+          <WorldMap
+            color="green"
+            backgroundColor="#b3e4ff"
+            size="xxl"
+            data={countryData}
+            onClickFunction={(
+              event: React.MouseEvent<SVGElement, Event>,
+              countryName: string,
+              isoCode: string,
+              value: string
+            ) => handleOnclick(countryName, isoCode, value)}
+          />
+        )}
+      </div>
+    </>
   );
 };
 
