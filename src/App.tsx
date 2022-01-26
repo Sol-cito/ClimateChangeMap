@@ -1,5 +1,6 @@
-import './App.css';
-import BodyContainer from './layout/BodyContainer';
+import "./App.css";
+import BodyContainer from "./layout/BodyContainer";
+import Modal from "react-modal";
 
 function App() {
   return (
@@ -8,5 +9,7 @@ function App() {
     </>
   );
 }
+
+Modal.setAppElement("#root");
 
 export default App;

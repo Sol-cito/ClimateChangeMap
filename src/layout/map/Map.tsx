@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { WorldMap } from "react-svg-worldmap";
 import CountryDataService from "../../service/CountryDataService";
-import CountryModal from "./CountryModal";
+import CountryModal from "../modal/CountryModal";
 import "./Map.scss";
 import { CountryCodeResponse, CountryData } from "./model/CountryData.model";
 
@@ -25,6 +25,7 @@ const Map = () => {
   }, []);
 
   const [isLoadingCodeOver, setCodeLoading] = useState<boolean>(false);
+
   const handleOnclick = (
     countryName: string,
     countryCode: string,
@@ -35,9 +36,12 @@ const Map = () => {
     return {};
   };
 
+  const modalOnClose = () => {
+    setShowModal(false);
+  };
+
   return (
     <>
-      <CountryModal show={showModal} countryCode={selectedCountryCode} />
       <div className="MapWrapper">
         {isLoadingCodeOver && (
           <WorldMap
@@ -54,6 +58,13 @@ const Map = () => {
           />
         )}
       </div>
+      <CountryModal
+        show={showModal}
+        countryCode={selectedCountryCode}
+        onClose={modalOnClose}
+        className="CountryModal"
+        overlayClassName="CountryModalOverLay"
+      />
     </>
   );
 };

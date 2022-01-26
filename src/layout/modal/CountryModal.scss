@@ -1,0 +1,22 @@
+.CountryModal {
+  position: absolute;
+  top: 12%;
+  left: 25%;
+  right: 16%;
+  bottom: 12%;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  padding: 20px;
+}
+
+.CountryModalOverLay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(68, 68, 68, 0.75);
+}
