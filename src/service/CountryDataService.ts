@@ -1,13 +1,19 @@
-import axios from "axios";
+import BaseService from "./BaseService";
 
-export default class CountryDataService {
+export default class CountryDataService extends BaseService {
   public getAllCountryCode = async () => {
-    let response: any;
-    try {
-      response = await axios.get("http://localhost:3100/countryCode/allCode");
-    } catch (error) {
-      alert(error); //TO-DO : 공통 에러 처리 기능 구현
-    }
-    return response;
+    const requestProps = {
+      url: "/countryCode/allCode",
+    };
+
+    return this.axiosAsyncRequest(requestProps);
+  };
+
+  public getAlpha3CodeByCountryCode = async (countryCode: string) => {
+    const requestProps = {
+      url: "/countryCode/" + countryCode,
+    };
+
+    return this.axiosAsyncRequest(requestProps);
   };
 }
