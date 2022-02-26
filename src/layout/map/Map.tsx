@@ -10,6 +10,7 @@ const countryDataService = new CountryDataService();
 
 const Map = () => {
   const [showModal, setShowModal] = useState(false);
+  const [selectedCountryName, setSelectedCountryName] = useState("");
   const [selectedCountryCode, setSelectedCountryCode] = useState("");
 
   useEffect(() => {
@@ -33,6 +34,7 @@ const Map = () => {
   ) => {
     setShowModal(true);
     setSelectedCountryCode(countryCode);
+    setSelectedCountryName(countryName);
     return {};
   };
 
@@ -64,6 +66,7 @@ const Map = () => {
         onClose={modalOnClose}
         className="CountryModal"
         overlayClassName="CountryModalOverLay"
+        countryName={selectedCountryName}
       />
     </>
   );

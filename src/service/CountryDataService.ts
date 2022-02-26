@@ -3,15 +3,15 @@ import BaseService from "./BaseService";
 export default class CountryDataService extends BaseService {
   public getAllCountryCode = async () => {
     const requestProps = {
-      url: "/countryCode/allCode",
+      url: "/countryInfo/allCode",
     };
 
     return this.axiosAsyncRequest(requestProps);
   };
 
-  public getAlpha3CodeByCountryCode = async (countryCode: string) => {
+  public getCountryTempInfo = async (countryCode: string) => {
     const requestProps = {
-      url: "/countryCode/" + countryCode,
+      url: "/countryInfo/temperature?countryCode=" + countryCode,
     };
 
     return this.axiosAsyncRequest(requestProps);
