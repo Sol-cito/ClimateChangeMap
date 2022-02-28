@@ -5,7 +5,7 @@ interface props {
 }
 
 export default class BaseService {
-  public axiosAsyncRequest = async (props: props) => {
+  protected axiosAsyncRequest = async (props: props) => {
     let response: any;
     try {
       let baseUrl: string = "http://localhost:3100";

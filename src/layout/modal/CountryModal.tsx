@@ -23,7 +23,6 @@ const CountryModal = (props: CountryModalProps) => {
         const res = await countryDataService.getCountryTempInfo(
           props.countryCode
         );
-        console.log(res.data[0]["2000"]);
         setCountryTemperature(res.data[0]);
       };
       fetchData();
@@ -42,7 +41,7 @@ const CountryModal = (props: CountryModalProps) => {
       >
         <CountryModalContent
           countryName={props.countryName}
-          tempData={countryTemperature}
+          temperatureData={countryTemperature}
         />
       </Modal>
     </>
