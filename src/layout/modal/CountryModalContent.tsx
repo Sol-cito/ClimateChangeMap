@@ -7,8 +7,14 @@ export interface CountryModalContentProps {
 }
 
 const CountryModalContent = (props: CountryModalContentProps) => {
-  const yearList = Object.keys(props.temperatureData || []);
-  const temperatureList = Object.values(props.temperatureData || []);
+  const yearList = Object.keys(props.temperatureData || [])
+    .map((ele) => {
+      return ele.substring(5, 9);
+    })
+    .filter((ele, idx) => (idx + 1) % 5 == 0);
+  const temperatureList = Object.values(props.temperatureData || []).filter(
+    (ele, idx) => (idx + 1) % 5 == 0
+  );
 
   return (
     <>
@@ -18,13 +24,23 @@ const CountryModalContent = (props: CountryModalContentProps) => {
           type="line"
           series={[
             {
-              name: "yearly temperature",
+              name: "Celsius Degree",
               data: temperatureList,
             },
           ]}
+          width="1100px"
+          height="550px"
           options={{
+            chart: {
+              toolbar: {
+                show: false,
+              },
+            },
             xaxis: {
               categories: yearList,
+            },
+            stroke: {
+              curve: "smooth",
             },
           }}
         />
