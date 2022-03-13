@@ -5,7 +5,7 @@ import "./BodyContainer.scss";
 const BodyContainer = () => {
   return (
     <div id="BodyContainer">
-      <SidebarContainer />
+      {/* <SidebarContainer /> */}
       <MapContainer />
     </div>
   );

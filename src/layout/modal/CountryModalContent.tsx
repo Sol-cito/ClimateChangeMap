@@ -7,14 +7,32 @@ export interface CountryModalContentProps {
 }
 
 const CountryModalContent = (props: CountryModalContentProps) => {
-  const yearList = Object.keys(props.temperatureData || [])
-    .map((ele) => {
-      return ele.substring(5, 9);
-    })
-    .filter((ele, idx) => (idx + 1) % 5 == 0);
-  const temperatureList = Object.values(props.temperatureData || []).filter(
-    (ele, idx) => (idx + 1) % 5 == 0
+  const yearList = [
+    "1900's",
+    "1910's",
+    "1920's",
+    "1930's",
+    "1940's",
+    "1950's",
+    "1960's",
+    "1970's",
+    "1980's",
+    "1990's",
+    "2000's",
+    "2010's",
+  ];
+
+  let temperatureList = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+  Object.values(props.temperatureData || []).forEach((ele, idx) =>
+    idx <= 8
+      ? (temperatureList[0] += ele)
+      : (temperatureList[1 + Math.floor((idx - 9) / 10)] += ele)
   );
+
+  temperatureList = temperatureList.map((ele) => {
+    return ele / 10;
+  });
 
   return (
     <>

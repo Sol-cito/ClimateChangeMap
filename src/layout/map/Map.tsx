@@ -51,12 +51,15 @@ const Map = () => {
             backgroundColor="#b3e4ff"
             size="xxl"
             data={countryData}
+            // tooltipBgColor="transparent"
+            // tooltipTextColor="transparent"
             onClickFunction={(
               event: React.MouseEvent<SVGElement, Event>,
               countryName: string,
               isoCode: string,
               value: string
             ) => handleOnclick(countryName, isoCode, value)}
+            tooltipTextFunction={(countryName: string) => countryName}
           />
         )}
       </div>
