@@ -1,4 +1,5 @@
-.MapWrapper {
+.MapWrapper svg {
+  height: 130vh;
   // animation: rotate_image 10s linear infinite;
   // transform-origin: 50% 50%;
 }
@@ -7,3 +8,12 @@
 // 	100% {
 //     	transform: rotate(360deg);
 //     }
+
+.CountryModal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: fit-content;
+  height: fit-content;
+}

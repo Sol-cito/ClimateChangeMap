@@ -46,8 +46,8 @@ const CountryModalContent = (props: CountryModalContentProps) => {
               data: temperatureList,
             },
           ]}
-          width="1100px"
-          height="550px"
+          width="900px"
+          height="450px"
           options={{
             chart: {
               toolbar: {
