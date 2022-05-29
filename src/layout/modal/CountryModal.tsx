@@ -31,7 +31,7 @@ const CountryModal = (props: CountryModalProps) => {
 
   return (
     <>
-      <Modal // TO-DO : Modal 띄울 때 transition 효과 넣기
+      <Modal // TO-DO : 모달 닫기버튼 추가
         isOpen={props.show}
         shouldCloseOnEsc={true}
         preventScroll={true}

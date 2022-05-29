@@ -1,21 +1,28 @@
 import Map from "./Map";
 import "./MapContainer.scss";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import { Card } from "react-bootstrap";
+import { useState } from "react";
 
 const MapContainer = () => {
+  const [countryNameForCard, setCountryNameForCard] = useState("");
+
   return (
-    // <TransformWrapper>
-    //   <TransformComponent>
-    <div className="slide_box">
-      <div>
-        <Map />
-      </div>
-      <div>
-        <Map />
-      </div>
-    </div>
-    //   </TransformComponent>
-    // </TransformWrapper>
+    <>
+      <Card>{countryNameForCard}</Card>
+      <TransformWrapper>
+        <TransformComponent>
+          <div className="slide_box">
+            <div>
+              <Map setCountryNameForCard={setCountryNameForCard} />
+            </div>
+            <div>
+              <Map setCountryNameForCard={setCountryNameForCard} />
+            </div>
+          </div>
+        </TransformComponent>
+      </TransformWrapper>
+    </>
   );
 };
 

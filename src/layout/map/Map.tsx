@@ -8,24 +8,29 @@ import { CountryCodeResponse, CountryData } from "./model/CountryData.model";
 const countryData: CountryData[] = [];
 const countryDataService = new CountryDataService();
 
-const Map = () => {
+interface MapProps {
+  setCountryNameForCard: Function;
+}
+
+const Map = (props: MapProps) => {
   const [showModal, setShowModal] = useState(false);
   const [selectedCountryName, setSelectedCountryName] = useState("");
   const [selectedCountryCode, setSelectedCountryCode] = useState("");
+  const [isLoadingCodeOver, setCodeLoading] = useState<boolean>(false);
 
   useEffect(() => {
     countryDataService.getAllCountryCode().then((res) => {
-      res.data.forEach((item: CountryCodeResponse) => {
-        countryData.push({
-          country: item.alpha2Code,
-          value: item.numericCode,
+      if (res) {
+        res.data.forEach((item: CountryCodeResponse) => {
+          countryData.push({
+            country: item.alpha2Code,
+            value: item.numericCode,
+          });
         });
-      });
+      }
       setCodeLoading(true);
     });
   }, []);
-
-  const [isLoadingCodeOver, setCodeLoading] = useState<boolean>(false);
 
   const handleOnclick = (
     countryName: string,
@@ -35,7 +40,12 @@ const Map = () => {
     setShowModal(true);
     setSelectedCountryCode(countryCode);
     setSelectedCountryName(countryName);
+    // props.setCountryNameForCard(countryName);
     return {};
+  };
+
+  const handleToolTip = (countryName: string) => {
+    return countryName;
   };
 
   const modalOnClose = () => {
@@ -51,15 +61,17 @@ const Map = () => {
             backgroundColor="#b3e4ff"
             size="xxl"
             data={countryData}
-            // tooltipBgColor="transparent"
-            // tooltipTextColor="transparent"
+            tooltipBgColor="transparent"
+            tooltipTextColor="transparent"
             onClickFunction={(
               event: React.MouseEvent<SVGElement, Event>,
               countryName: string,
               isoCode: string,
               value: string
             ) => handleOnclick(countryName, isoCode, value)}
-            tooltipTextFunction={(countryName: string) => countryName}
+            tooltipTextFunction={(countryName: string) =>
+              handleToolTip(countryName)
+            }
           />
         )}
       </div>
